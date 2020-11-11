@@ -273,81 +273,81 @@ bool OculusModule::configure(yarp::os::ResourceFinder& rf)
 
     // configure torso retargeting, iff we use Xsens
 
-    yInfo() << "[OculusModule::configure] initialize the torso!";
-    if (m_useXsens)
-    {
-        m_torso = std::make_unique<TorsoRetargeting>();
-        yarp::os::Bottle& torsoOptions = rf.findGroup("TORSO_RETARGETING");
-        torsoOptions.append(generalOptions);
-        if (!m_torso->configure(torsoOptions, getName()))
-        {
-            yError() << "[OculusModule::configure] Unable to initialize the torso retargeting.";
-            return false;
-        }
-    }
-    yInfo() << "[OculusModule::configure] finish the torso!";
+    //    yInfo() << "[OculusModule::configure] initialize the torso!";
+    //    if (m_useXsens)
+    //    {
+    //        m_torso = std::make_unique<TorsoRetargeting>();
+    //        yarp::os::Bottle& torsoOptions = rf.findGroup("TORSO_RETARGETING");
+    //        torsoOptions.append(generalOptions);
+    //        if (!m_torso->configure(torsoOptions, getName()))
+    //        {
+    //            yError() << "[OculusModule::configure] Unable to initialize the torso
+    //            retargeting."; return false;
+    //        }
+    //    }
+    //    yInfo() << "[OculusModule::configure] finish the torso!";
 
     // configure fingers retargeting
-    m_leftHandFingers = std::make_unique<FingersRetargeting>();
-    yarp::os::Bottle& leftFingersOptions = rf.findGroup("LEFT_FINGERS_RETARGETING");
-    leftFingersOptions.append(generalOptions);
-    if (!m_leftHandFingers->configure(leftFingersOptions, getName()))
-    {
-        yError() << "[OculusModule::configure] Unable to initialize the left fingers retargeting.";
-        return false;
-    }
+    //    m_leftHandFingers = std::make_unique<FingersRetargeting>();
+    //    yarp::os::Bottle& leftFingersOptions = rf.findGroup("LEFT_FINGERS_RETARGETING");
+    //    leftFingersOptions.append(generalOptions);
+    //    if (!m_leftHandFingers->configure(leftFingersOptions, getName()))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to initialize the left fingers
+    //        retargeting."; return false;
+    //    }
 
-    m_rightHandFingers = std::make_unique<FingersRetargeting>();
-    yarp::os::Bottle& rightFingersOptions = rf.findGroup("RIGHT_FINGERS_RETARGETING");
-    rightFingersOptions.append(generalOptions);
-    if (!m_rightHandFingers->configure(rightFingersOptions, getName()))
-    {
-        yError() << "[OculusModule::configure] Unable to initialize the right fingers retargeting.";
-        return false;
-    }
+    //    m_rightHandFingers = std::make_unique<FingersRetargeting>();
+    //    yarp::os::Bottle& rightFingersOptions = rf.findGroup("RIGHT_FINGERS_RETARGETING");
+    //    rightFingersOptions.append(generalOptions);
+    //    if (!m_rightHandFingers->configure(rightFingersOptions, getName()))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to initialize the right fingers
+    //        retargeting."; return false;
+    //    }
 
     // configure hands retargeting
-    m_leftHand = std::make_unique<HandRetargeting>();
-    yarp::os::Bottle& leftHandOptions = rf.findGroup("LEFT_HAND_RETARGETING");
-    leftHandOptions.append(generalOptions);
-    if (!m_leftHand->configure(leftHandOptions))
-    {
-        yError() << "[OculusModule::configure] Unable to initialize the left fingers retargeting.";
-        return false;
-    }
+    //    m_leftHand = std::make_unique<HandRetargeting>();
+    //    yarp::os::Bottle& leftHandOptions = rf.findGroup("LEFT_HAND_RETARGETING");
+    //    leftHandOptions.append(generalOptions);
+    //    if (!m_leftHand->configure(leftHandOptions))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to initialize the left fingers
+    //        retargeting."; return false;
+    //    }
 
-    m_rightHand = std::make_unique<HandRetargeting>();
-    yarp::os::Bottle& rightHandOptions = rf.findGroup("RIGHT_HAND_RETARGETING");
-    rightHandOptions.append(generalOptions);
-    if (!m_rightHand->configure(rightHandOptions))
-    {
-        yError() << "[OculusModule::configure] Unable to initialize the right fingers retargeting.";
-        return false;
-    }
+    //    m_rightHand = std::make_unique<HandRetargeting>();
+    //    yarp::os::Bottle& rightHandOptions = rf.findGroup("RIGHT_HAND_RETARGETING");
+    //    rightHandOptions.append(generalOptions);
+    //    if (!m_rightHand->configure(rightHandOptions))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to initialize the right fingers
+    //        retargeting."; return false;
+    //    }
 
     // open ports
     std::string portName;
-    if (!YarpHelper::getStringFromSearchable(rf, "leftHandPosePort", portName))
-    {
-        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
-        return false;
-    }
-    if (!m_leftHandPosePort.open("/" + getName() + portName))
-    {
-        yError() << "[OculusModule::configure] Unable to open the port " << portName;
-        return false;
-    }
+    //    if (!YarpHelper::getStringFromSearchable(rf, "leftHandPosePort", portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
+    //        return false;
+    //    }
+    //    if (!m_leftHandPosePort.open("/" + getName() + portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to open the port " << portName;
+    //        return false;
+    //    }
 
-    if (!YarpHelper::getStringFromSearchable(rf, "rightHandPosePort", portName))
-    {
-        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
-        return false;
-    }
-    if (!m_rightHandPosePort.open("/" + getName() + portName))
-    {
-        yError() << "[OculusModule::configure] Unable to open the port " << portName;
-        return false;
-    }
+    //    if (!YarpHelper::getStringFromSearchable(rf, "rightHandPosePort", portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
+    //        return false;
+    //    }
+    //    if (!m_rightHandPosePort.open("/" + getName() + portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to open the port " << portName;
+    //        return false;
+    //    }
 
     if (!m_imagesOrientationPort.open("/" + getName() + "/imagesOrientation:o"))
     {
@@ -371,27 +371,27 @@ bool OculusModule::configure(yarp::os::ResourceFinder& rf)
         return false;
     }
 
-    if (!YarpHelper::getStringFromSearchable(rf, "rpcWalkingPort_name", portName))
-    {
-        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
-        return false;
-    }
-    if (!m_rpcWalkingClient.open("/" + getName() + portName))
-    {
-        yError() << "[OculusModule::configure] " << portName << " port already open.";
-        return false;
-    }
+    //    if (!YarpHelper::getStringFromSearchable(rf, "rpcWalkingPort_name", portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
+    //        return false;
+    //    }
+    //    if (!m_rpcWalkingClient.open("/" + getName() + portName))
+    //    {
+    //        yError() << "[OculusModule::configure] " << portName << " port already open.";
+    //        return false;
+    //    }
 
-    if (!YarpHelper::getStringFromSearchable(rf, "rpcVirtualizerPort_name", portName))
-    {
-        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
-        return false;
-    }
-    if (!m_rpcVirtualizerClient.open("/" + getName() + portName))
-    {
-        yError() << "[OculusModule::configure] " << portName << " port already open.";
-        return false;
-    }
+    //    if (!YarpHelper::getStringFromSearchable(rf, "rpcVirtualizerPort_name", portName))
+    //    {
+    //        yError() << "[OculusModule::configure] Unable to get a string from a searchable";
+    //        return false;
+    //    }
+    //    if (!m_rpcVirtualizerClient.open("/" + getName() + portName))
+    //    {
+    //        yError() << "[OculusModule::configure] " << portName << " port already open.";
+    //        return false;
+    //    }
 
     m_playerOrientation = 0;
     m_playerOrientationOld = 0;
@@ -430,15 +430,15 @@ bool OculusModule::close()
 
     // close devices
     m_head->controlHelper()->close();
-    m_rightHandFingers->controlHelper()->close();
-    m_leftHandFingers->controlHelper()->close();
+    //    m_rightHandFingers->controlHelper()->close();
+    //    m_leftHandFingers->controlHelper()->close();
 
-    if (m_useXsens)
-    {
-        m_torso->controlHelper()->close();
-    }
+    //    if (m_useXsens)
+    //    {
+    //        m_torso->controlHelper()->close();
+    //    }
 
-    m_joypadDevice.close();
+    //    m_joypadDevice.close();
     m_transformClientDevice.close();
 
     return true;
@@ -529,34 +529,36 @@ bool OculusModule::getTransforms()
             }
         }
 
-        if (!m_frameTransformInterface->frameExists(m_leftHandFrameName))
-        {
+        //        if (!m_frameTransformInterface->frameExists(m_leftHandFrameName))
+        //        {
 
-            yError() << "[OculusModule::getTransforms] No " << m_leftHandFrameName << " frame.";
-            return false;
-        }
+        //            yError() << "[OculusModule::getTransforms] No " << m_leftHandFrameName << "
+        //            frame."; return false;
+        //        }
 
-        if (!m_frameTransformInterface->frameExists(m_rightHandFrameName))
-        {
-            yError() << "[OculusModule::getTransforms] No " << m_rightHandFrameName << " frame.";
-            return false;
-        }
+        //        if (!m_frameTransformInterface->frameExists(m_rightHandFrameName))
+        //        {
+        //            yError() << "[OculusModule::getTransforms] No " << m_rightHandFrameName << "
+        //            frame."; return false;
+        //        }
 
-        if (!m_frameTransformInterface->getTransform(
-                m_leftHandFrameName, m_rootFrameName, m_oculusRoot_T_lOculus))
-        {
-            yError() << "[OculusModule::getTransforms] Unable to evaluate the "
-                     << m_leftHandFrameName << " to " << m_rootFrameName << "transformation";
-            return false;
-        }
+        //        if (!m_frameTransformInterface->getTransform(
+        //                m_leftHandFrameName, m_rootFrameName, m_oculusRoot_T_lOculus))
+        //        {
+        //            yError() << "[OculusModule::getTransforms] Unable to evaluate the "
+        //                     << m_leftHandFrameName << " to " << m_rootFrameName <<
+        //                     "transformation";
+        //            return false;
+        //        }
 
-        if (!m_frameTransformInterface->getTransform(
-                m_rightHandFrameName, m_rootFrameName, m_oculusRoot_T_rOculus))
-        {
-            yError() << "[OculusModule::getTransforms] Unable to evaluate the "
-                     << m_rightHandFrameName << " to " << m_rootFrameName << "transformation";
-            return false;
-        }
+        //        if (!m_frameTransformInterface->getTransform(
+        //                m_rightHandFrameName, m_rootFrameName, m_oculusRoot_T_rOculus))
+        //        {
+        //            yError() << "[OculusModule::getTransforms] Unable to evaluate the "
+        //                     << m_rightHandFrameName << " to " << m_rootFrameName <<
+        //                     "transformation";
+        //            return false;
+        //        }
     }
     return true;
 }
@@ -564,16 +566,17 @@ bool OculusModule::getTransforms()
 bool OculusModule::getFeedbacks()
 {
 
-    if (m_useXsens)
-    {
-        if (!m_torso->controlHelper()->getFeedback())
-        {
-            yError() << "[OculusModule::getFeedbacks] Unable to get the joint encoders feedback: "
-                        "TorsoRetargeting";
-            return false;
-        }
-        m_torso->controlHelper()->updateTimeStamp();
-    }
+    //    if (m_useXsens)
+    //    {
+    //        if (!m_torso->controlHelper()->getFeedback())
+    //        {
+    //            yError() << "[OculusModule::getFeedbacks] Unable to get the joint encoders
+    //            feedback: "
+    //                        "TorsoRetargeting";
+    //            return false;
+    //        }
+    //        m_torso->controlHelper()->updateTimeStamp();
+    //    }
 
     if (!m_head->controlHelper()->getFeedback())
     {
@@ -633,14 +636,14 @@ bool OculusModule::updateModule()
                 }
             }
             // update left hand transformation values
-            yarp::sig::Vector& leftHandPose = m_leftHandPosePort.prepare();
-            m_leftHand->setPlayerOrientation(m_playerOrientation);
-            m_leftHand->setHandTransform(m_oculusRoot_T_lOculus);
+            //            yarp::sig::Vector& leftHandPose = m_leftHandPosePort.prepare();
+            //            m_leftHand->setPlayerOrientation(m_playerOrientation);
+            //            m_leftHand->setHandTransform(m_oculusRoot_T_lOculus);
 
             // update right hand transformation values
-            yarp::sig::Vector& rightHandPose = m_rightHandPosePort.prepare();
-            m_rightHand->setPlayerOrientation(m_playerOrientation);
-            m_rightHand->setHandTransform(m_oculusRoot_T_rOculus);
+            //            yarp::sig::Vector& rightHandPose = m_rightHandPosePort.prepare();
+            //            m_rightHand->setPlayerOrientation(m_playerOrientation);
+            //            m_rightHand->setHandTransform(m_oculusRoot_T_rOculus);
 
             if (m_useVirtualizer)
             {
@@ -651,22 +654,22 @@ bool OculusModule::updateModule()
                                                          m_oculusHeadsetPoseInertial[1],
                                                          m_oculusHeadsetPoseInertial[2]};
 
-                    m_leftHand->setPlayerPosition(teleopPosition);
-                    m_rightHand->setPlayerPosition(teleopPosition);
+                    //                    m_leftHand->setPlayerPosition(teleopPosition);
+                    //                    m_rightHand->setPlayerPosition(teleopPosition);
                     m_playerOrientationOld = m_playerOrientation;
                 }
             }
 
             // evaluate the robot hands' pose
-            m_leftHand->evaluateDesiredHandPose(leftHandPose);
-            m_rightHand->evaluateDesiredHandPose(rightHandPose);
+            //            m_leftHand->evaluateDesiredHandPose(leftHandPose);
+            //            m_rightHand->evaluateDesiredHandPose(rightHandPose);
 
             // move the robot
-            if (m_moveRobot)
-            {
-                m_leftHandPosePort.write();
-                m_rightHandPosePort.write();
-            }
+            //            if (m_moveRobot)
+            //            {
+            //                m_leftHandPosePort.write();
+            //                m_rightHandPosePort.write();
+            //            }
         }
 
         // use joypad
@@ -674,57 +677,58 @@ bool OculusModule::updateModule()
         if (!m_useVirtualizer)
         {
             yarp::os::Bottle cmd, outcome;
-            double x, y;
-            m_joypadControllerInterface->getAxis(m_xJoypadIndex, x);
-            m_joypadControllerInterface->getAxis(m_yJoypadIndex, y);
+            //            double x, y;
+            //            m_joypadControllerInterface->getAxis(m_xJoypadIndex, x);
+            //            m_joypadControllerInterface->getAxis(m_yJoypadIndex, y);
 
-            x = -m_scaleX * deadzone(x);
-            y = m_scaleY * deadzone(y);
-            std::swap(x, y);
+            //            x = -m_scaleX * deadzone(x);
+            //            y = m_scaleY * deadzone(y);
+            //            std::swap(x, y);
 
-            cmd.addString("setGoal");
-            cmd.addDouble(x);
-            cmd.addDouble(y);
-            if (m_moveRobot)
-            {
-                m_rpcWalkingClient.write(cmd, outcome);
-            }
-            locCmd.push_back(x);
-            locCmd.push_back(y);
-        }
+            //            cmd.addString("setGoal");
+            //            cmd.addDouble(x);
+            //            cmd.addDouble(y);
+            //            if (m_moveRobot)
+            //            {
+            //                m_rpcWalkingClient.write(cmd, outcome);
+            //            }
+            //            locCmd.push_back(x);
+            //            locCmd.push_back(y);
+            //        }
 
-        // left fingers
-        double leftFingersVelocity
-            = evaluateDesiredFingersVelocity(m_squeezeLeftIndex, m_releaseLeftIndex);
-        if (!m_leftHandFingers->setFingersVelocity(leftFingersVelocity))
-        {
-            yError() << "[OculusModule::updateModule] Unable to set the left finger velocity.";
-            return false;
-        }
-        if (m_moveRobot)
-        {
-            if (!m_leftHandFingers->move())
-            {
-                yError() << "[OculusModule::updateModule] Unable to move the left finger";
-                return false;
-            }
-        }
+            // left fingers
+            //        double leftFingersVelocity
+            //            = evaluateDesiredFingersVelocity(m_squeezeLeftIndex, m_releaseLeftIndex);
+            //        if (!m_leftHandFingers->setFingersVelocity(leftFingersVelocity))
+            //        {
+            //            yError() << "[OculusModule::updateModule] Unable to set the left finger
+            //            velocity."; return false;
+            //        }
+            //        if (m_moveRobot)
+            //        {
+            //            if (!m_leftHandFingers->move())
+            //            {
+            //                yError() << "[OculusModule::updateModule] Unable to move the left
+            //                finger"; return false;
+            //            }
+            //        }
 
-        // right fingers
-        double rightFingersVelocity
-            = evaluateDesiredFingersVelocity(m_squeezeRightIndex, m_releaseRightIndex);
-        if (!m_rightHandFingers->setFingersVelocity(rightFingersVelocity))
-        {
-            yError() << "[OculusModule::updateModule] Unable to set the right finger velocity.";
-            return false;
-        }
-        if (m_moveRobot)
-        {
-            if (!m_rightHandFingers->move())
-            {
-                yError() << "[OculusModule::updateModule] Unable to move the right finger";
-                return false;
-            }
+            // right fingers
+            //        double rightFingersVelocity
+            //            = evaluateDesiredFingersVelocity(m_squeezeRightIndex,
+            //            m_releaseRightIndex);
+            //        if (!m_rightHandFingers->setFingersVelocity(rightFingersVelocity))
+            //        {
+            //            yError() << "[OculusModule::updateModule] Unable to set the right finger
+            //            velocity."; return false;
+            //        }
+            //        if (m_moveRobot)
+            //        {
+            //            if (!m_rightHandFingers->move())
+            //            {
+            //                yError() << "[OculusModule::updateModule] Unable to move the right
+            //                finger"; return false;
+            //            }
         }
 
 #ifdef ENABLE_LOGGER
@@ -810,11 +814,11 @@ bool OculusModule::updateModule()
         if (buttonMapping > 0)
         {
             // TODO add a visual feedback for the user
-            if (m_moveRobot)
-            {
-                cmd.addString("prepareRobot");
-                m_rpcWalkingClient.write(cmd, outcome);
-            }
+            //                if (m_moveRobot)
+            //                {
+            //                    cmd.addString("prepareRobot");
+            //                    m_rpcWalkingClient.write(cmd, outcome);
+            //                }
             m_state = OculusFSM::InPreparation;
             yInfo() << "[OculusModule::updateModule] prepare the robot";
         }
@@ -850,7 +854,7 @@ bool OculusModule::updateModule()
             if (m_moveRobot)
             {
                 cmd.addString("startWalking");
-                m_rpcWalkingClient.write(cmd, outcome);
+                //                    m_rpcWalkingClient.write(cmd, outcome);
             }
             // if(outcome.get(0).asBool())
             m_state = OculusFSM::Running;
@@ -871,15 +875,16 @@ bool OculusModule::updateModule()
         = HeadRetargeting::forwardKinematics(neckPitch, neckRoll, neckYaw);
 
     iDynTree::Rotation root_R_chest = iDynTree::Rotation::Identity();
-    if (m_useXsens)
-    {
-        double torsoPitch, torsoRoll, torsoYaw;
-        yarp::sig::Vector torsoEncoders = m_torso->controlHelper()->jointEncoders();
-        torsoPitch = torsoEncoders(0);
-        torsoRoll = torsoEncoders(1);
-        torsoYaw = torsoEncoders(2);
-        root_R_chest = TorsoRetargeting::forwardKinematics(torsoPitch, torsoRoll, torsoYaw);
-    }
+    //        if (m_useXsens)
+    //        {
+    //            double torsoPitch, torsoRoll, torsoYaw;
+    //            yarp::sig::Vector torsoEncoders = m_torso->controlHelper()->jointEncoders();
+    //            torsoPitch = torsoEncoders(0);
+    //            torsoRoll = torsoEncoders(1);
+    //            torsoYaw = torsoEncoders(2);
+    //            root_R_chest = TorsoRetargeting::forwardKinematics(torsoPitch, torsoRoll,
+    //            torsoYaw);
+    //        }
     iDynTree::Rotation inertial_R_root = iDynTree::Rotation::RotZ(-m_playerOrientation);
 
     // inertial_R_head is used to simulate an imu required by the cam calibration application
